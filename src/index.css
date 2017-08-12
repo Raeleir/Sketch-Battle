@@ -36,5 +36,78 @@ font-size: 3em;
 /*font-family: 'Pompiere', cursive;
 font-family: 'Open Sans', sans-serif;*/
 
+/*LOGIN PAGE*/
+
+/*HOWTO COMP*/
+.how-to-flex{
+
+    height: 100vh;
+  width: 100%;
+display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.how-to-flex h1{
+  font-family: 'Pompiere', cursive !important;
+color:black;
+text-transform:uppercase;
+font-size: 3em;
+}
+
+.how-to-flex p{
+font-family: 'Open Sans', sans-serif;
+color:black;
+
+}
+
+/*LOGIN-COMP*/
+.login-button{
+  background-color:rgba(255,82,82,0.87);
+  color:white !important;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 45px;
+  padding-top:5px;
+   border-width: .5px;
+   border-color:white;
+   border-style:solid;
+  padding-bottom: 5px;
+  padding-left:15px;
+  padding-right: 15px;
+  margin-top:10px;
+}
+
+.login-button:hover{
+ color:rgba(255,82,82,0.87) !important;
+ border-color:rgba(255,82,82,0.87) !important;
+ border-width: .5px;
+ border-style: solid;
+  background-color:white !important;
+  font-family: 'Open Sans', sans-serif;
+
+ 
+
+}
+
+.create-account-link{
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: underline;
+      margin-top:10px;
+        padding-top:5px;
+
+  padding-bottom: 5px;
+
+
+}
+
+.create-account-link:hover{
+    font-family: 'Open Sans', sans-serif;
+   color:gray;
+      margin-top:10px;
+
+}
+
 
 
