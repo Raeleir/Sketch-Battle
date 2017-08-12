@@ -1,13 +1,15 @@
 import React from "react";
 import Login from "../components/log-in";
-
+import HowTo from "../components/how-to.js";
 
 class LoginContainer extends React.Component {
     render() {
         return (
-            <div>
-                <h1>LoginContainer connected</h1>
-                <Login/>
+            <div className="container">
+                <div className="row">
+                   <HowTo></HowTo>
+                    <Login/>
+                </div>
             </div>
         )
     }

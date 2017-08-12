@@ -1,19 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-
-class Navbar extends React.Component {
+import {Link} from "react-router-dom";
+import {Navbar, NavItem, Nav} from "react-bootstrap";
+class SketchNavbar extends React.Component {
     render() {
         return (
-            <div>
-                <Link to="/">LOGO/BRAND</Link>
-                <Link to="/login">LOGIN</Link>
-                <Link to="/signup">SIGNUP</Link>
-                <h4>Username: Wins / Losses</h4>
-                <button>Logout</button>
-            </div>
+
+        <Navbar collapseOnSelect className="nav-custom navbar">
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <Link to="/">Sketch Battle</Link>
+                    </Navbar.Brand>
+                    <Navbar.Toggle/>
+                </Navbar.Header>
+                <Navbar.Collapse>
+                            {/*<Link to="/login ">Login</Link>
+                      
+                            <Link to="/signup ">Signup</Link>*/}
+                         
+                           <Nav pullRight>
+                
+                     <NavItem>UserName: Charlie</NavItem>
+         
+                     <NavItem>Wins: </NavItem>
+                 
+                     <NavItem>Loses: </NavItem>
+                  
+                      <NavItem>Logout</NavItem>
+                    
+                         
+                       
+                        </Nav>
+
+                        </Navbar.Collapse>
+                    </Navbar>
         )
     }
 }
 
-export default Navbar;
+export default SketchNavbar;
