@@ -7,8 +7,8 @@ class LoginContainer extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                   <HowTo></HowTo>
-                    <Login/>
+                   <HowTo/>
+                   <Login/>
                 </div>
             </div>
         )

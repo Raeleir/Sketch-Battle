@@ -12,7 +12,7 @@ class Login extends React.Component {
                         <input className="login-inputs" placeholder="password"/>
                         <div className="row">
                             <div className="col-md-6 text-center">
-                               <Link to="/signup "><p className="create-account-link pull-left">Create an Account</p></Link> 
+                               <Link to="/signup"><p className="create-account-link pull-left">Create an Account</p></Link>
                             </div>
                             <div className="col-md-6">
                                 <p className="pull-right login-button">Login</p>

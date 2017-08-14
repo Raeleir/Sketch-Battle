@@ -18,16 +18,14 @@ class Signup extends React.Component {
 
                             <div className="col-md-12">
                                 <p className="text-center center-block signup-button btn-lg">Login</p>
-                                <Link to="/login ">
+                                <Link to="/login">
                                     <p className="text-center">Not ready? Return Home</p>
                                 </Link>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         )
     }
 }

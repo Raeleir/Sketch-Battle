@@ -5,10 +5,7 @@ import Signup from "../components/sign-up";
 class SignupContainer extends React.Component {
     render() {
         return (
-         
-              
-                <Signup/>
-        
+            <Signup/>
         )
     }
 }
