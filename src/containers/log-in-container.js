@@ -36,16 +36,13 @@ class LoginContainer extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-<<<<<<< HEAD
-                   <HowTo/>
-                   <Login/>
-=======
+
                     <HowTo></HowTo>
                     <Login
                         input={this.state}
                         handleChange={this.handleChange}
                         handleSubmit={this.handleSubmit}/>
->>>>>>> create-login
+
                 </div>
             </div>
         )

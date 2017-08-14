@@ -17,22 +17,14 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
-<<<<<<< HEAD
-                    <Switch>
-                        <Route exact path="/" component={HomeContainer}/>
-                        <Route exact path="/login" component={LoginContainer}/>
-                        <Route exact path="/signup" component={SignupContainer}/>
-                    </Switch>
-=======
+
                  
                         <Switch>
                             <Route exact path="/home" component={HomeContainer}/>
                             <Route exact path="/" component={LoginContainer}/>
                             <Route exact path="/signup" component={SignupContainer}/>
                         </Switch>
->>>>>>> create-login
-                </div>
+
             </BrowserRouter>
         )
     }

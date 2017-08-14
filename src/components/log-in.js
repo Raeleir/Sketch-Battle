@@ -37,13 +37,9 @@ class Login extends React.Component {
                             type="password" placeholder="password"className="login-inputs"/>
                         <div className="row">
                             <div className="col-md-6 text-center">
-<<<<<<< HEAD
-                               <Link to="/signup"><p className="create-account-link pull-left">Create an Account</p></Link>
-=======
-                                <Link to="/signup ">
+                                <Link to="/signup">
                                     <p className="create-account-link pull-left">Create an Account</p>
                                 </Link>
->>>>>>> create-login
                             </div>
                             <div className="col-md-6">
                                 <button type="submit" className="pull-right login-button">Login</button>

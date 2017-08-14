@@ -27,14 +27,12 @@ class SignupContainer extends React.Component {
 
     render() {
         return (
-<<<<<<< HEAD
-            <Signup/>
-=======
+
          
               
                 <Signup input={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
         
->>>>>>> create-login
+
         )
     }
 }
