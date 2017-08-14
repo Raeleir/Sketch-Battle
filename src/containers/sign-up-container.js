@@ -12,33 +12,26 @@ class SignupContainer extends React.Component {
         this.state = {
             username: "",
             password: ""
-        }
+        };
         autoBind(this);
     }
     handleChange(key, event) {
         this.setState({[key]: event.target.value});
     }
     handleSubmit(username, password) {
-        this
-            .props
-             this.props.signup(username,password);
+        this.props.signup(username,password);
         this.setState({username: "", password: ""})
     }
 
     render() {
         return (
-
-         
-              
                 <Signup input={this.state} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
-        
-
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return state;
-}
+};
 
 export default connect(mapStateToProps, actionCreators)(SignupContainer);

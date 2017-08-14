@@ -17,18 +17,14 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-
-                 
-                        <Switch>
-                            <Route exact path="/home" component={HomeContainer}/>
-                            <Route exact path="/" component={LoginContainer}/>
-                            <Route exact path="/signup" component={SignupContainer}/>
-                        </Switch>
-
+                <Switch>
+                    <Route exact path="/home" component={HomeContainer}/>
+                    <Route exact path="/" component={LoginContainer}/>
+                    <Route exact path="/signup" component={SignupContainer}/>
+                </Switch>
             </BrowserRouter>
         )
     }
 }
 
-ReactDOM.render(
-    <Provider store={store}><App/></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
