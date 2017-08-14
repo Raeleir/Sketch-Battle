@@ -8,22 +8,51 @@ class Signup extends React.Component {
             <div className="col-md-12">
                 <div className="how-to-flex">
                     <h1>Create Login</h1>
-                    <div className="form">
+                    <form onSubmit={(event)=>{
+    event.preventDefault();
+    this.props.handleSubmit(this.props.input.username, this.props.input.password);
+    
+    }} className="form"> 
                         <input
+                            value={this.props.input.username}
+                            onChange={(event) => {
+                            this
+                                .props
+                                .handleChange("username", event)
+                        }}
+                            type="text"
                             autoFocus="autoFocus"
                             className="login-inputs"
                             placeholder="create username"/>
-                        <input className="login-inputs" placeholder="create password"/>
+                        <input
+                            value={this.props.input.password}
+                            onChange={(event) => {
+                            this
+                                .props
+                                .handleChange("password", event)
+                        }}
+                            className="login-inputs"
+                            placeholder="create password"type="password"/>
                         <div className="row">
 
                             <div className="col-md-12">
+<<<<<<< HEAD
                                 <p className="text-center center-block signup-button btn-lg">Login</p>
                                 <Link to="/login">
+=======
+                                <button type="submit" className="text-center center-block signup-button btn-lg">Signup</button>
+                                <Link to="/login ">
+>>>>>>> create-login
                                     <p className="text-center">Not ready? Return Home</p>
                                 </Link>
                             </div>
                         </div>
+<<<<<<< HEAD
                     </div>
+=======
+                    </form>
+
+>>>>>>> create-login
                 </div>
             </div>
         )
