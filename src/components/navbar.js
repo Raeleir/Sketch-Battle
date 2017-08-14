@@ -1,8 +1,12 @@
 import React from "react";
+import {connect} from "react-redux";
+import * as actionCreators from "../actions/index.js";
 import {Link} from "react-router-dom";
 import {Navbar, NavItem, Nav} from "react-bootstrap";
 class SketchNavbar extends React.Component {
+
     render() {
+       
         return (
             <Navbar collapseOnSelect className="nav-custom navbar">
                 <Navbar.Header>
@@ -13,9 +17,9 @@ class SketchNavbar extends React.Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav pullRight>
-                        <NavItem>UserName: Charlie</NavItem>
-                        <NavItem>Wins: </NavItem>
-                        <NavItem>Loses: </NavItem>
+                        <NavItem>UserName: </NavItem>
+                        <NavItem>Wins:</NavItem>
+                        <NavItem>Losses: </NavItem>
                         <NavItem>Logout</NavItem>
                     </Nav>
                 </Navbar.Collapse>
@@ -24,4 +28,8 @@ class SketchNavbar extends React.Component {
     }
 }
 
-export default SketchNavbar;
+const mapStateToProps = (state) => {
+    return state;
+};
+
+export default connect(mapStateToProps, actionCreators)(SketchNavbar);

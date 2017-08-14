@@ -12,8 +12,14 @@ let userSchema = new Schema({
         type: String,
         required: true
     },
-    wins: Number,
-    losses: Number
+    wins:{
+        type: Number,
+        default:0
+    } ,
+    losses:{
+        type: Number,
+        default:0
+    } 
 });
 
 userSchema.pre("save", function(next){
