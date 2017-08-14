@@ -41,6 +41,7 @@ class Login extends React.Component {
                                 <Link to="/signup">
                                     <p className="create-account-link pull-left">Create an Account</p>
                                 </Link>
+                            </div>
 
                             <div className="col-md-6">
                                 <button type="submit" className="pull-right login-button">Login</button>

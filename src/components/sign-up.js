@@ -36,23 +36,18 @@ class Signup extends React.Component {
                         <div className="row">
 
                             <div className="col-md-12">
-<<<<<<< HEAD
-                                <p className="text-center center-block signup-button btn-lg">Login</p>
-                                <Link to="/login">
-=======
+
                                 <button type="submit" className="text-center center-block signup-button btn-lg">Signup</button>
-                                <Link to="/login ">
->>>>>>> create-login
+                                <Link to="/">
+
                                     <p className="text-center">Not ready? Return Home</p>
                                 </Link>
                             </div>
                         </div>
-<<<<<<< HEAD
-                    </div>
-=======
+
                     </form>
 
->>>>>>> create-login
+
                 </div>
             </div>
         )
