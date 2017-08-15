@@ -13,23 +13,26 @@ let app = express();
 
 
 // socket.io
-// let http = require("http");
-// let socketIo = require("socket.io");
-// let server = http.createServer(app);
-// let io = socketIo.listen(server);
-// server.listen(8080);
-// app.use(express.static(__dirname + "/public"));
-// console.log("Server running on 8080");
-// let line_history = [];
-// io.on("connection", function(socket) {
-//     for(i in line_history) {
-//         socket.emit("draw_line", { line: line_history[i] });
-//     }
-//     socket.on("draw-line", function(data) {
-//         line_history.push(data.line);
-//         io.emit("draw_line", { line: data.line });
-//     })
-// });
+let socketIO = require('socket.io');
+
+let server = app.listen(PORT, ()=>{
+        console.log(`server has started on ${PORT}`)
+    });
+let io = socketIO(server);
+app.use(express.static('../public'));
+
+let line_history = [];
+
+io.on('connection', function (socket) {
+   for (let i in line_history) {
+      socket.emit('draw_line', { line: line_history[i] } );
+   }
+
+   socket.on('draw_line', function (data) {
+      line_history.push(data.line);
+      io.emit('draw_line', { line: data.line });
+   });
+});
 // socket.io
 
 
@@ -37,12 +40,6 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use(bodyParser.json());
 app.use(cors());
+
 app.use("/auth", authRouter);
-
-console.log(typeof promptRouter)
-
 app.use("/prompt", promptRouter);
-
-app.listen(PORT, ()=>{
-    console.log(`server has started on ${PORT}`)
-});
