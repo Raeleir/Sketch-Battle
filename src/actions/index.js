@@ -4,6 +4,7 @@ export function login(username, password){
     return(dispatch)=>{
         return axios.post("http://localhost:8080/auth/login", {username,password}).then((response)=>{
             dispatch(setToken(response.data.token))
+            dispatch(loadUserInfo(response.data.username))
   
             alert("loggedin")
         }).catch((err)=>{
@@ -31,39 +32,42 @@ export function signup(username, password){
     }
 }
 
-// export function upWins(username){
-//     return(dispatch)=>{
-//         return axios.get(`http://localhost:8080/auth/wins/${username}`).then((response)=>{
-//         dispatch(loadUserInfo());
-//         }).catch((error)=>{
-//             throw error;
-//         });
-//     }
-// }
-// export function upLosses(username){
-//     return(dispatch)=>{
-//         return axios.get(`http://localhost:8080/auth/losses/${username}`).then((response)=>{
-//         dispatch(loadUserInfo());
-//         }).catch((error)=>{
-//             throw error;
-//         });
-//     }
-// }
+export function upWins(username){
+    return(dispatch)=>{
+        return axios.put(`http://localhost:8080/auth/wins/${username}`).then((response)=>{
+        dispatch(loadUserInfo(username));
+        }).catch((error)=>{
+            throw error;
+        });
+    }
+}
+export function upLosses(username){
+    return(dispatch)=>{
+        return axios.put(`http://localhost:8080/auth/losses/${username}`).then((response)=>{
+        dispatch(loadUserInfo(username));
+        }).catch((error)=>{
+            throw error;
+        });
+    }
+}
     
-//     export function loadUserInfo(username){
-//     return(dispatch)=>{
-//         return axios.get(`http://localhost:8080/user/${username}`).then((reponse)=>{
-//             dispatch(setData(reponse.data.data))
-//         }).catch((error)=>{
-//             throw error;
-//         });
-//     }
+    export function loadUserInfo(username){
+        console.log("Here")
+        return(dispatch)=>{
+        return axios.get(`http://localhost:8080/auth/user/${username}`).then((response)=>{
+            console.log("DATA", response.data.data)
+            dispatch(setData(response.data.data));
+        }).catch((error)=>{
+            throw error;
+        });
+    }
 
-// }
+}
 
-// export function setData(user){
-//     return{
-//         type:"SET_DATA",
-//         user
-//     }
-// }
+export function setData(user){
+    console.log(user)
+    return{
+        type:"SET_DATA",
+        user
+    }
+}

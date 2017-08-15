@@ -17,9 +17,9 @@ class SketchNavbar extends React.Component {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav pullRight>
-                        <NavItem>UserName: </NavItem>
-                        <NavItem>Wins:</NavItem>
-                        <NavItem>Losses: </NavItem>
+                        <NavItem>UserName: {this.props.user.username} </NavItem>
+                        <NavItem>Wins: {this.props.user.wins}</NavItem>
+                        <NavItem>Losses: {this.props.user.losses} </NavItem>
                         <NavItem>Logout</NavItem>
                     </Nav>
                 </Navbar.Collapse>
