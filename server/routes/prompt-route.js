@@ -15,9 +15,7 @@ promptRouter.use((req,res,next)=>{
 
 // GET ALL
 promptRouter.get("/", (req,res)=>{
-   
        Prompt.find(req.query, (err, data) => {
-           console.log("called")
  if(err) {
       res.status(500).send({"message": "Error within server", err});
     } else {

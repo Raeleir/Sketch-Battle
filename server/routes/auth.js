@@ -28,7 +28,6 @@ passport.use(new Strategy((username, password, done)=>{
 authRouter.use(passport.initialize());
 
 authRouter.get("/user/:username", (req,res)=>{
-    console.log(req.params)
     User.findOne({username:req.params.username}, (err,data)=>{
         if(err){
             res.status(500).send({"message": "Error", err})

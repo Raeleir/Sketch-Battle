@@ -251,5 +251,6 @@ font-size:2em;
   margin-top:10px;
 }
 
-.sketchpad{
+.hangman-output {
+    height: 60vh;
 }
