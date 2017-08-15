@@ -33,16 +33,29 @@ class HangmanContainer extends React.Component {
     handleGuess(word, guess) {
         let modWord = word;
         let go = false;
-        modWord.includes(guess) ? go = true : go = false;
-        while(go === true) {
-            let index = (modWord.indexOf(guess)) * 2;
+        if(modWord.includes(guess)) {
+            go = true;
+            let all = [];
+            while (go === true) {
+                let index = (modWord.indexOf(guess)) * 2;
+                let wordIndex = modWord.indexOf(guess);
+                all.push(index);
+                modWord = modWord.substr(0, wordIndex) + " " + modWord.substr(wordIndex + 1);
+                go = modWord.includes(guess);
+            }
             let dash = this.state.dashThing;
-            let newDash = dash.substr(0, index) + guess + dash.substr(index + 1);
+            let newDash = "";
+            for (let i = 0; i < all.length; i++) {
+                console.log(newDash);
+                if (i > 0) {
+                    newDash = newDash.substr(0, all[i]) + guess + newDash.substr(all[i] + 1);
+                } else if (i === 0) {
+                    newDash = dash.substr(0, all[i]) + guess + dash.substr(all[i] + 1);
+                }
+            }
             this.setState({
                 dashThing: newDash
             });
-            modWord = modWord.substr(0, index/2) + " " + modWord.substr(index/2 + 1);
-            go = modWord.includes(guess);
         }
     }
     handleChange(key,event){
