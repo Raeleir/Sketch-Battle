@@ -3,12 +3,12 @@ import axios from "axios";
 export function login(username, password){
     return(dispatch)=>{
         return axios.post("http://localhost:8080/auth/login", {username,password}).then((response)=>{
-            dispatch(setToken(response.data.token))
-            dispatch(loadUserInfo(response.data.username))
+            dispatch(setToken(response.data.token));
+            dispatch(loadUserInfo(response.data.username));
   
             alert("loggedin")
         }).catch((err)=>{
-            alert("Username or password was incorrect")
+            alert("Username or password was incorrect");
             throw err;
         })
     }
@@ -22,11 +22,11 @@ export function signup(username, password){
     return (dispatch)=>{
         return axios.post("http://localhost:8080/auth/signup", {username, password})
             .then((response) => {
-                alert("username created please login")
+                alert("username created please login");
               window.location.href="/"
             })
             .catch((err) => {
-                alert("Username was taken")
+                alert("Username was taken");
                 throw err;
             });
     }
@@ -52,10 +52,10 @@ export function upLosses(username){
 }
     
     export function loadUserInfo(username){
-        console.log("Here")
+        console.log("Here");
         return(dispatch)=>{
         return axios.get(`http://localhost:8080/auth/user/${username}`).then((response)=>{
-            console.log("DATA", response.data.data)
+            console.log("DATA", response.data.data);
             dispatch(setData(response.data.data));
         }).catch((error)=>{
             throw error;
@@ -65,7 +65,7 @@ export function upLosses(username){
 }
 
 export function setData(user){
-    console.log(user)
+    console.log(user);
     return{
         type:"SET_DATA",
         user

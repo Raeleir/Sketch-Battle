@@ -1,27 +1,26 @@
-let express = require("express");
-let cors = require('cors');
-let bodyParser = require('body-parser');
-let mongoose = require ('mongoose');
-let settings =  require('./config/settings.js');
-let PORT =  process.env.PORT || settings.port;
+let express = require("express"),
+    cors = require('cors'),
+    bodyParser = require('body-parser'),
+    mongoose = require ('mongoose'),
+    settings =  require('./config/settings.js'),
+    PORT =  process.env.PORT || settings.port;
+
 mongoose.connect("mongodb://localhost:27017/");
 
-let authRouter = require("./routes/auth.js");
-let promptRouter = require("./routes/prompt-route.js");
-
-let app = express();
+let authRouter = require("./routes/auth.js"),
+    promptRouter = require("./routes/prompt-route.js"),
+    app = express();
 
 
 // socket.io
-let socketIO = require('socket.io');
-
-let server = app.listen(PORT, ()=>{
+let socketIO = require('socket.io'),
+    server = app.listen(PORT, ()=>{
         console.log(`server has started on ${PORT}`)
-    });
-let io = socketIO(server);
-app.use(express.static('../public'));
+    }),
+    io = socketIO(server),
+    line_history = [];
 
-let line_history = [];
+app.use(express.static('../public'));
 
 io.on('connection', function (socket) {
    for (let i in line_history) {

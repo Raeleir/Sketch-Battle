@@ -1,11 +1,10 @@
-let express = require('express');
-let authRouter = express.Router();
-let User =  require("../models/user-model.js");
-
-let jwt=require("jsonwebtoken");
-let passport = require("passport");
-let Strategy = require("passport-local");
-let settings = require("../config/settings.js");
+let express = require('express'),
+    authRouter = express.Router(),
+    User =  require("../models/user-model.js"),
+    jwt=require("jsonwebtoken"),
+    passport = require("passport"),
+    Strategy = require("passport-local"),
+    settings = require("../config/settings.js");
 
 passport.use(new Strategy((username, password, done)=>{
     User.findOne({username}, (err, currentUser)=>{

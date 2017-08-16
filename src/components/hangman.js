@@ -4,13 +4,12 @@ import { Col } from "react-bootstrap";
 class Hangman extends React.Component {
     render() {
         return (
-            <Col md={12}>
-                <h1 className="sketch">Hangman</h1>
-                <div className="sketch-pad-container">
-                    <h3 className="prompt">{this.props.state.dashThing}</h3>
+
+
+                <div>
+                    <h3 className="prompt">{this.props.state.playerWord}</h3>
                     <div className="row">
-                        <Col md={12} className="hangman-output">
-                        </Col>
+
                         <Col md={12} className="text-center">
 
                             <input
@@ -20,6 +19,9 @@ class Hangman extends React.Component {
                                 }}
                                 className="guess-input input-lg"
                                 placeholder="Letter"
+                                // onKeyUp={() => {
+                                //     this.props.handleGuess(this.props.state.gameWord, this.props.state.guess);
+                                // }}
                             />
 
                             <span
@@ -39,7 +41,8 @@ class Hangman extends React.Component {
                         </Col>
                     </div>
                 </div>
-            </Col>
+
+
         )
     }
 }

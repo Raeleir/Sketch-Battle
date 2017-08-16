@@ -1,7 +1,7 @@
 let defaultState = {
     token: "",
     user: []
-}
+};
 
 const mainReducer = (state = defaultState, action) => {
     if (action.type === "SET_TOKEN") {
@@ -19,6 +19,6 @@ const mainReducer = (state = defaultState, action) => {
             ...state
         }
     }
-}
+};
 
 export default mainReducer;

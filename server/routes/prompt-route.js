@@ -1,8 +1,9 @@
-let express = require("express");
-let promptRouter = express.Router();
-let settings = require("../config/settings.js");
+let express = require("express"),
+    promptRouter = express.Router(),
+    settings = require("../config/settings.js"),
 //import model
-let Prompt = require("../models/prompt-model.js");
+    Prompt = require("../models/prompt-model.js");
+
 //middleware to put all queries to lowercase
 promptRouter.use((req,res,next)=>{
     for( let key in req.query){

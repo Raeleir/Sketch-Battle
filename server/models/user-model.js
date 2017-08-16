@@ -1,7 +1,7 @@
-let mongoose = require("mongoose");
-let bcrypt = require("bcrypt");
-let salt = bcrypt.genSaltSync(10);
-let Schema = mongoose.Schema;
+let mongoose = require("mongoose"),
+    bcrypt = require("bcrypt"),
+    salt = bcrypt.genSaltSync(10),
+    Schema = mongoose.Schema;
 
 let userSchema = new Schema({
     username: {
