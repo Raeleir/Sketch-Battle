@@ -88,3 +88,13 @@ export function setData(user){
         user
     }
 }
+
+export function logout(){
+     localStorage.removeItem("token");
+     localStorage.removeItem("user");
+ 
+    return{
+        type: "LOG_OUT"
+    }
+
+}

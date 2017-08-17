@@ -20,7 +20,7 @@ class SketchNavbar extends React.Component {
                         <NavItem>UserName: {this.props.user.username} </NavItem>
                         <NavItem>Wins: {this.props.user.wins}</NavItem>
                         <NavItem>Losses: {this.props.user.losses} </NavItem>
-                        <NavItem>Logout</NavItem>
+                        <NavItem onClick={()=>{this.props.handleLogout()}}>Logout</NavItem>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
