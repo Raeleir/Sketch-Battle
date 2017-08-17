@@ -18,6 +18,7 @@ axios.interceptors.response.use(function (response) {
 export function login(username, password){
     return(dispatch)=>{
         return axios.post("http://localhost:8080/auth/login", {username,password}).then((response)=>{
+            console.log(response.data)
             dispatch(setToken(response.data.token));
             dispatch(loadUserInfo(response.data.username));
             localStorage.setItem("token",response.data.token);

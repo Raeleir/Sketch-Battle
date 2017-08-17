@@ -35,7 +35,7 @@ class HangmanContainer extends React.Component {
 
         //loss condition code
         if(this.state.strikes === 6) {
-            alert("YOU LOSE: ", this.state.strikes);
+            alert("YOU LOSE ", this.state.strikes);
             this.props.upLosses(this.props.user.username);
             console.log(this.props.user.losses)
             context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);

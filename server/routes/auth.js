@@ -53,7 +53,7 @@ authRouter.post("/login", passport.authenticate("local", {session:false}), (req,
             }
             res.status(201).send({
                 "message":"Success, Auth Token issued",
-                "token": jwt.sign(payload,settings.secret,{expiresIn:4}),
+                "token": jwt.sign(payload,settings.secret,{expiresIn:30*60}),
                 "username":data.username
             })
         }
@@ -84,14 +84,14 @@ authRouter.put("/wins/:username", (req,res)=>{
         } else if(data===null){
             res.status(404).send({"message": `Item with id of ${req.params._id} was not found`})
         } else{
-            data.wins +=1;
-            data.save((err, data)=>{
+            User.findByIdAndUpdate({"_id": data._id}, {$set:{wins:data.wins+1}},(err,data)=>{
                 if(err){
                     res.status(500).send({"message": "Error on server", err});
                 } else{
                     res.status(200).send({"message": "Success your data has been updated", data});
 
                 }
+
             });
 
         }
@@ -107,15 +107,16 @@ authRouter.put("/losses/:username", (req,res)=>{
         } else if(data===null){
             res.status(404).send({"message": `Item with id of ${req.params._id} was not found`})
         } else{
-            data.losses +=1;
-            data.save((err, data)=>{
+             User.findByIdAndUpdate({"_id": data._id}, {$set:{losses:data.losses+1}},(err,data)=>{
                 if(err){
                     res.status(500).send({"message": "Error on server", err});
                 } else{
                     res.status(200).send({"message": "Success your data has been updated", data});
 
                 }
+
             });
+      
 
         }
     })

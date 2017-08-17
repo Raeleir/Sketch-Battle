@@ -6,7 +6,8 @@ let mongoose = require("mongoose"),
 let userSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique:true
     },
     password: {
         type: String,
@@ -24,15 +25,15 @@ let userSchema = new Schema({
 
 userSchema.pre("save", function(next){
     this.password=bcrypt.hashSync(this.password,salt);
-    console.log(this.password);
+    console.log("User has signed up for an account there password hash is " + this.password);
     next();
 });
 
 userSchema.methods.auth=function(passwordAttempt,cb){
-    console.log(this.password);
+    console.log("User is loggin in there current password hash is " + this.password);
     bcrypt.compare(passwordAttempt, this.password, (err,result)=>{
         if (err){
-            console.log("Here", err);
+           
             cb(false);
         } else if(result){
             cb(true);
