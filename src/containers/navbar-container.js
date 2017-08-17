@@ -4,6 +4,7 @@ import * as actionCreators from "../actions/index.js";
 import SketchNavbar from "../components/navbar.js";
 
 class SketchNavbarCon extends React.Component {
+   
         componentWillMount(){
         if(localStorage.getItem("token")){
             this.props.setToken(localStorage.getItem("token"));
@@ -17,7 +18,7 @@ class SketchNavbarCon extends React.Component {
 
         console.log(this.props)
         return (
-            <SketchNavbar user={this.props.user} />
+            <SketchNavbar user={this.props.user} handleLogout={this.props.logout} />
         )
     }
 }
