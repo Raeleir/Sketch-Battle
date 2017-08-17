@@ -1,14 +1,16 @@
 import React from "react";
 import autoBind from "react-autobind";
+import {connect} from "react-redux";
+import * as actionCreators from "../actions/index.js";
 import Hangman from "../components/hangman";
-import { Col } from "react-bootstrap";
+import { Col, Modal } from "react-bootstrap";
 
 
 class HangmanContainer extends React.Component {
     constructor() {
         super();
         this.state = {
-            playerWord: "",
+            playerWord: "_",
             gameWord: "",
             guess: "",
             strikes: 0
@@ -17,14 +19,32 @@ class HangmanContainer extends React.Component {
     }
 
     componentDidUpdate() {
+        let context = this.refs.canvas.getContext('2d');
         //win condition code
         if(!this.state.playerWord.includes("_")) {
-            console.log("YOU WIN");
+            alert("YOU WIN" ); 
+            this.props.upWins(this.props.user.username);
+            console.log(this.props.user.wins);
+            context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+            this.setState({
+                ...this.state,
+                playerWord: "_",
+                strikes:0
+            });
         }
 
         //loss condition code
         if(this.state.strikes === 6) {
-            console.log("YOU LOSE: ", this.state.strikes);
+            alert("YOU LOSE: ", this.state.strikes);
+            this.props.upLosses(this.props.user.username);
+            console.log(this.props.user.losses)
+            context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+                this.setState({
+                ...this.state,
+                 playerWord: "_",
+                strikes:0
+            });
+
         }
     }
 
@@ -146,7 +166,7 @@ class HangmanContainer extends React.Component {
                 context.moveTo(150, 95);
                 context.lineTo(135, 110);
                 context.stroke();
-            } else {
+            } else if(this.state.strikes===5) {
                 //RIGHT LEG
                 context.beginPath();
                 context.moveTo(150, 95);
@@ -171,6 +191,7 @@ class HangmanContainer extends React.Component {
                             <canvas ref="canvas" id="hangman" height={160}/>
                     </Col>
                          <Hangman state={this.state}
+                         user={this.props.user}
                          startGame={this.startGame}
                          handleGuess={this.handleGuess}
                          handleChange={this.handleChange}
@@ -181,4 +202,8 @@ class HangmanContainer extends React.Component {
     }
 }
 
-export default HangmanContainer;
+const mapStateToProps = (state) => {
+    return state;
+};
+
+export default connect(mapStateToProps, actionCreators)(HangmanContainer);

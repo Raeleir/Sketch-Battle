@@ -23,15 +23,16 @@ let userSchema = new Schema({
 });
 
 userSchema.pre("save", function(next){
-    this.password=bcrypt.hashSync(this.password+this.username,salt);
+    this.password=bcrypt.hashSync(this.password,salt);
+    console.log(this.password);
     next();
-
 });
 
 userSchema.methods.auth=function(passwordAttempt,cb){
-    bcrypt.compare(passwordAttempt+this.username, this.password, (err,result)=>{
+    console.log(this.password);
+    bcrypt.compare(passwordAttempt, this.password, (err,result)=>{
         if (err){
-            console.log(err);
+            console.log("Here", err);
             cb(false);
         } else if(result){
             cb(true);

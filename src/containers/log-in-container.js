@@ -13,7 +13,8 @@ class LoginContainer extends React.Component {
         super();
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            attemptLogin: false
         };
         autoBind(this);
     }
@@ -22,14 +23,15 @@ class LoginContainer extends React.Component {
     }
     handleSubmit(username, password) {
         this.props.login(username, password);
-        this.setState({username: "", password: ""})
+        this.setState({username: "", password: "", attemptLogin:true})
     }
     componentDidUpdate(){
-        if(this.props.token !==""){
+        if(this.props.token !=="" && this.state.attemptLogin){
             this.props.history.push("/home");
-            console.log("here");
+            
         }
     }
+
     render() {
         return (
             <Grid>
