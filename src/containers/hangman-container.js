@@ -109,7 +109,6 @@ class HangmanContainer extends React.Component {
         //handle wrong guess
         } else {
             //add a strike
-            console.log(this.state.strikes);
             let strikes = this.state.strikes;
             strikes++;
             this.setState({
