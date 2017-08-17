@@ -7,7 +7,7 @@ let userSchema = new Schema({
     username: {
         type: String,
         required: true,
-        unique:true
+        unique: true
     },
     password: {
         type: String,
@@ -15,29 +15,26 @@ let userSchema = new Schema({
     },
     wins:{
         type: Number,
-        default:0
+        default: 0
     } ,
     losses:{
         type: Number,
-        default:0
+        default: 0
     } 
 });
 
-userSchema.pre("save", function(next){
-    this.password=bcrypt.hashSync(this.password,salt);
-    console.log("User has signed up for an account there password hash is " + this.password);
+userSchema.pre("save", function(next) {
+    this.password = bcrypt.hashSync(this.password, salt);
     next();
 });
 
-userSchema.methods.auth=function(passwordAttempt,cb){
-    console.log("User is loggin in there current password hash is " + this.password);
-    bcrypt.compare(passwordAttempt, this.password, (err,result)=>{
-        if (err){
-           
+userSchema.methods.auth = function(passwordAttempt, cb) {
+    bcrypt.compare(passwordAttempt, this.password, (err, result)=>{
+        if (err) {
             cb(false);
-        } else if(result){
+        } else if(result) {
             cb(true);
-        } else{
+        } else {
             cb(false);
         }
     });
