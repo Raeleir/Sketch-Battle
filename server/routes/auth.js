@@ -12,11 +12,13 @@ passport.use(new Strategy((username, password, done)=>{
             done(err, false);
         } else if(currentUser===null){
             done(null, false);
-        } else{
-            currentUser.auth(password, (isCorrect)=>{
+        } else {
+            currentUser.auth(password, (isCorrect)=> {
                 if(isCorrect){
+                    console.log("Passed");
                     done(null, true);
                 } else{
+                    console.log("Failed");
                     done(null, false);
                 }
             })
@@ -51,7 +53,7 @@ authRouter.post("/login", passport.authenticate("local", {session:false}), (req,
             }
             res.status(201).send({
                 "message":"Success, Auth Token issued",
-                "token": jwt.sign(payload,settings.secret,{expiresIn:30*60}),
+                "token": jwt.sign(payload,settings.secret,{expiresIn:4}),
                 "username":data.username
             })
         }

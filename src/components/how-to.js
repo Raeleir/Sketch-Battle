@@ -7,8 +7,8 @@ class HowTo extends React.Component {
             <div>
                 <Col md={4} mdOffset={1}>
                     <div className="how-to-flex ">
-                        <h1>Sketch Battle</h1>
-                        <p>battle out the best of the guess vs the best of the pen</p>
+                        <h1>Hangman</h1>
+                        <p>don't die</p>
                     </div>
                 </Col>
                 <Col md={2}>

@@ -4,6 +4,14 @@ import * as actionCreators from "../actions/index.js";
 import SketchNavbar from "../components/navbar.js";
 
 class SketchNavbarCon extends React.Component {
+        componentWillMount(){
+        if(localStorage.getItem("token")){
+            this.props.setToken(localStorage.getItem("token"));
+        }
+        if(localStorage.getItem("user")){
+            this.props.loadUserInfo(localStorage.getItem("user"));
+        }
+    } 
    
     render() {
 

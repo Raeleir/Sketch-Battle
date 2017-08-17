@@ -11,7 +11,7 @@ class SketchNavbar extends React.Component {
             <Navbar collapseOnSelect className="nav-custom navbar">
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Link to="/">Sketch Battle</Link>
+                        <Link to="/">Hangman</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle/>
                 </Navbar.Header>
