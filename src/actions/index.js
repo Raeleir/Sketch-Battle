@@ -55,7 +55,6 @@ export function upLosses(username){
         console.log("Here");
         return(dispatch)=>{
         return axios.get(`http://localhost:8080/auth/user/${username}`).then((response)=>{
-            console.log("DATA", response.data.data);
             dispatch(setData(response.data.data));
         }).catch((error)=>{
             throw error;
@@ -65,7 +64,6 @@ export function upLosses(username){
 }
 
 export function setData(user){
-    console.log(user);
     return{
         type:"SET_DATA",
         user

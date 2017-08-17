@@ -1,5 +1,5 @@
 import React from "react";
-import { Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 class Hangman extends React.Component {
     render() {
@@ -8,7 +8,7 @@ class Hangman extends React.Component {
 
                 <div>
                     <h3 className="prompt">{this.props.state.playerWord}</h3>
-                    <div className="row">
+                    <Row>
 
                         <Col md={12} className="text-center">
 
@@ -19,9 +19,9 @@ class Hangman extends React.Component {
                                 }}
                                 className="guess-input input-lg"
                                 placeholder="Letter"
-                                // onKeyUp={() => {
-                                //     this.props.handleGuess(this.props.state.gameWord, this.props.state.guess);
-                                // }}
+                                onKeyUp={() => {
+                                    this.props.handleGuess(this.props.state.gameWord, this.props.state.guess);
+                                }}
                             />
 
                             <span
@@ -39,7 +39,7 @@ class Hangman extends React.Component {
                             </button>
 
                         </Col>
-                    </div>
+                    </Row>
                 </div>
 
 

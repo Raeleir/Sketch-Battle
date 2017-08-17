@@ -4,10 +4,7 @@ import * as actionCreators from "../actions/index.js";
 import SketchNavbar from "../components/navbar.js";
 
 class SketchNavbarCon extends React.Component {
-   
     render() {
-
-        console.log(this.props)
         return (
             <SketchNavbar user={this.props.user} />
         )

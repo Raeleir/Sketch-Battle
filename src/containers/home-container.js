@@ -11,7 +11,7 @@ class HomeContainer extends React.Component {
             <div>
                 <NavbarSketchCon/>
                 <Grid fluid>
-                    <MatchmakeContainer/>
+                    {/*<MatchmakeContainer/>*/}
                     <HangmanContainer/>
                 </Grid>
             </div>

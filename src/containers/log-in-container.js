@@ -27,7 +27,6 @@ class LoginContainer extends React.Component {
     componentDidUpdate(){
         if(this.props.token !==""){
             this.props.history.push("/home");
-            console.log("here");
         }
     }
     render() {

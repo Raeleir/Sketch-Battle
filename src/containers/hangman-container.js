@@ -1,14 +1,15 @@
 import React from "react";
 import autoBind from "react-autobind";
+import { connect } from "react-redux";
+import * as actionCreators from "../actions/index";
 import Hangman from "../components/hangman";
 import { Col } from "react-bootstrap";
-
 
 class HangmanContainer extends React.Component {
     constructor() {
         super();
         this.state = {
-            playerWord: "",
+            playerWord: "_",
             gameWord: "",
             guess: "",
             strikes: 0
@@ -16,20 +17,66 @@ class HangmanContainer extends React.Component {
         autoBind(this);
     }
 
+    componentDidMount() {
+        let context = this.refs.canvas.getContext('2d');
+        //gallow tall piece
+        context.beginPath();
+        context.moveTo(100,10);
+        context.lineTo(100,130);
+        context.stroke();
+        //gallow bottom
+        context.beginPath();
+        context.moveTo(70,130);
+        context.lineTo(150,130);
+        context.stroke();
+        //gallow top
+        context.beginPath();
+        context.moveTo(100,10);
+        context.lineTo(150,10);
+        context.stroke();
+        //hang
+        context.beginPath();
+        context.moveTo(150,10);
+        context.lineTo(150,40);
+        context.stroke();
+    }
+
     componentDidUpdate() {
+        let context = this.refs.canvas.getContext('2d');
         //win condition code
         if(!this.state.playerWord.includes("_")) {
+            // this.props.upWins(this.props.user.username);
+            this.setState({
+                ...this.state,
+                strikes: 0
+            });
+            context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
             console.log("YOU WIN");
         }
 
         //loss condition code
         if(this.state.strikes === 6) {
-            console.log("YOU LOSE: ", this.state.strikes);
+            //RIGHT LEG
+            context.beginPath();
+            context.moveTo(150, 95);
+            context.lineTo(165, 110);
+            context.stroke();
+            // this.props.upLosses(this.props.user.username);
+            this.setState({
+                ...this.state,
+                strikes: 0
+            });
+            alert("YOU LOSE: ", this.state.strikes);
         }
     }
 
     startGame() {
         let context = this.refs.canvas.getContext('2d');
+        context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+        this.setState({
+            ...this.state,
+            strikes: 0
+        });
         //gallow tall piece
         context.beginPath();
         context.moveTo(100,10);
@@ -114,6 +161,7 @@ class HangmanContainer extends React.Component {
             strikes++;
             this.setState({
                 ...this.state,
+                guess: "",
                 strikes: strikes
             });
             //draw a piece of the hangman
@@ -148,11 +196,7 @@ class HangmanContainer extends React.Component {
                 context.lineTo(135, 110);
                 context.stroke();
             } else {
-                //RIGHT LEG
-                context.beginPath();
-                context.moveTo(150, 95);
-                context.lineTo(165, 110);
-                context.stroke();
+
             }
         }
     }
@@ -163,23 +207,26 @@ class HangmanContainer extends React.Component {
     }
     render() {
         return (
-               <Col md={12}>
+            <Col md={12}>
                 <h1 className="sketch">Hangman</h1>
                 <div className="sketch-pad-container">
-
-
-                        <Col md={12} ref="test" className="hangman-output">
-                            <canvas ref="canvas" id="hangman" height={160}/>
+                    <Col md={12} ref="test" className="hangman-output">
+                        <canvas ref="canvas" id="hangman" height={160}/>
                     </Col>
-                         <Hangman state={this.state}
+                     <Hangman
+                         state={this.state}
                          startGame={this.startGame}
                          handleGuess={this.handleGuess}
                          handleChange={this.handleChange}
                     />
-            </div>
-           </Col>
+                </div>
+            </Col>
         )
     }
 }
 
-export default HangmanContainer;
+const mapStateToProps = (state) => {
+    return state;
+};
+
+export default connect(mapStateToProps, actionCreators)(HangmanContainer);
