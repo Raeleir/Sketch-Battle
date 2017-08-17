@@ -6,7 +6,6 @@ class MatchmakeContainer extends React.Component {
     render() {
         return (
             <div>
-           
                 <Matchmake/>
             </div>
         )

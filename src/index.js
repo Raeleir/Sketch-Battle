@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 import reducers from "./reducers";
 import "./index.css";
 import HomeContainer from "./containers/home-container";
-
+import SketchContainer from "./containers/sketch-game-container";
 import LoginContainer from "./containers/log-in-container";
 import SignupContainer from "./containers/sign-up-container";
 
@@ -17,18 +17,15 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
-                 
-                        <Switch>
-                            <Route exact path="/home" component={HomeContainer}/>
-                            <Route exact path="/" component={LoginContainer}/>
-                            <Route exact path="/signup" component={SignupContainer}/>
-                        </Switch>
-                </div>
+                <Switch>
+                    <Route exact path="/home" component={HomeContainer}/>
+                    <Route exact path="/" component={LoginContainer}/>
+                    <Route exact path="/signup" component={SignupContainer}/>
+                    <Route exact path="/sketch" component={SketchContainer}/>
+                </Switch>
             </BrowserRouter>
         )
     }
 }
 
-ReactDOM.render(
-    <Provider store={store}><App/></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));

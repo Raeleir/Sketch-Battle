@@ -6,4 +6,4 @@ let promptSchema = new Schema({
 });
 
 
-module.exports = mongoose.models("prompts", promptSchema);
+module.exports = mongoose.model("prompts", promptSchema);
