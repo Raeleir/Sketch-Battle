@@ -1,35 +1,40 @@
-let mongoose = require("mongoose");
-let bcrypt = require("bcrypt");
-let salt = bcrypt.genSaltSync(10);
-let Schema = mongoose.Schema;
+let mongoose = require("mongoose"),
+    bcrypt = require("bcrypt"),
+    salt = bcrypt.genSaltSync(10),
+    Schema = mongoose.Schema;
 
 let userSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password: {
         type: String,
         required: true
     },
-    wins: Number,
-    losses: Number
+    wins:{
+        type: Number,
+        default: 0
+    } ,
+    losses:{
+        type: Number,
+        default: 0
+    } 
 });
 
-userSchema.pre("save", function(next){
-    this.password=bcrypt.hashSync(this.password+this.username,salt);
+userSchema.pre("save", function(next) {
+    this.password = bcrypt.hashSync(this.password, salt);
     next();
-
 });
 
-userSchema.methods.auth=function(passwordAttempt,cb){
-    bcrypt.compare(passwordAttempt+this.username, this.password, (err,result)=>{
-        if (err){
-            console.log(err);
+userSchema.methods.auth = function(passwordAttempt, cb) {
+    bcrypt.compare(passwordAttempt, this.password, (err, result)=>{
+        if (err) {
             cb(false);
-        } else if(result){
+        } else if(result) {
             cb(true);
-        } else{
+        } else {
             cb(false);
         }
     });

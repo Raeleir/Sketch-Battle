@@ -1,3 +1,3 @@
-# Sketch Battle
+# Hangman
 
-Pictionary like game. 
+a hangman game in reactjs.  

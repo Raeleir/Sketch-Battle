@@ -1,19 +1,19 @@
 import React from "react";
-import SketchContainer from "../containers/sketch-game-container";
-import MatchmakeContainer from "./matchmake-container";
-import NavbarSketch from "../components/navbar.js";
+
+// import MatchmakeContainer from "./matchmake-container";
+import NavbarSketchCon from "./navbar-container.js";
+import { Grid } from "react-bootstrap";
+import HangmanContainer from "./hangman-container";
 
 class HomeContainer extends React.Component {
     render() {
         return (
             <div>
-                <NavbarSketch></NavbarSketch>
-
-                <div className="container-fluid">
-
-                    <MatchmakeContainer/>
-                    <SketchContainer/>
-                </div>
+                <NavbarSketchCon/>
+                <Grid fluid>
+                    {/*<MatchmakeContainer/>*/}
+                    <HangmanContainer/>
+                </Grid>
             </div>
         )
     }
