@@ -4,42 +4,43 @@ import {Col} from "react-bootstrap";
 class Hangman extends React.Component {
     render() {
         return (
-
             <div>
                 <h3 className="prompt">{this.props.state.playerWord}</h3>
-                <div className="row">
 
+                <div className="row">
                     <Col md={12} className="text-center">
+
                         <span
                             onClick={() => {
-                            this
-                                .props
-                                .startGame();
-                        }}
-                            className="guess-button">
+                                this.props.startGame();
+                            }}
+                            className="guess-button"
+                        >
                             Start Game
                         </span>
-                        <input value={this.props.state.guess} onChange={(event) => {
-                            this
-                                .props
-                                .handleChange("guess", event);
-                        }} className="guess-input input-lg" placeholder="Letter"  onKeyUp={() => {this.props.handleGuess(this.props.state.gameWord, this.props.state.guess);
-                         }}
+
+                        <input
+                            value={this.props.state.guess} onChange={(event) => {
+                                this.props.handleChange("guess", event);
+                            }}
+                            className="guess-input input-lg"
+                            placeholder="Letter"
+                            onKeyUp={() => {
+                                this.props.handleGuess(this.props.state.gameWord, this.props.state.guess);
+                            }}
                         />
 
                         <button className="guess-button"
                             onClick={() => {
-                            this
-                                .props
-                                .handleGuess(this.props.state.gameWord, this.props.state.guess);
-                        }}>
+                                this.props.handleGuess(this.props.state.gameWord, this.props.state.guess);
+                            }}
+                        >
                             Guess
                         </button>
 
                     </Col>
                 </div>
             </div>
-
         )
     }
 }

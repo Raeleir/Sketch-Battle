@@ -9,11 +9,9 @@ mongoose.connect("mongodb://localhost:27017/");
 
 let authRouter = require("./routes/auth.js"),
     promptRouter = require("./routes/prompt-route.js"),
-    app = express();
-
-
+    app = express(),
 // socket.io
-let socketIO = require('socket.io'),
+    socketIO = require('socket.io'),
     server = app.listen(PORT, ()=>{
         console.log(`server has started on ${PORT}`)
     }),
@@ -24,9 +22,8 @@ app.use(express.static('../public'));
 
 io.on('connection', function (socket) {
    for (let i in line_history) {
-      socket.emit('draw_line', { line: line_history[i] } );
+      socket.emit('draw_line', { line: line_history[i] });
    }
-
    socket.on('draw_line', function (data) {
       line_history.push(data.line);
       io.emit('draw_line', { line: data.line });
@@ -35,10 +32,8 @@ io.on('connection', function (socket) {
 // socket.io
 
 
-app.use(bodyParser.urlencoded({extended:false}));
-
+app.use(bodyParser.urlencoded({extended:false}) );
 app.use(bodyParser.json());
 app.use(cors());
-
 app.use("/auth", authRouter);
 app.use("/prompt", promptRouter);

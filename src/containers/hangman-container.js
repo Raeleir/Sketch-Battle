@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import * as actionCreators from "../actions/index";
 import Hangman from "../components/hangman";
 import {Col} from "react-bootstrap";
+
+
 class HangmanContainer extends React.Component {
     constructor() {
         super();
@@ -15,11 +17,10 @@ class HangmanContainer extends React.Component {
         };
         autoBind(this);
     }
+
     componentDidMount() {
-        let context = this
-            .refs
-            .canvas
-            .getContext('2d');
+        let context = this.refs.canvas.getContext('2d');
+
         //gallow tall piece
         context.beginPath();
         context.moveTo(100, 40);
@@ -41,47 +42,45 @@ class HangmanContainer extends React.Component {
         context.lineTo(150, 70);
         context.stroke();
     }
+
     componentDidUpdate() {
-        let context = this
-            .refs
-            .canvas
-            .getContext('2d');
+        let context = this.refs.canvas.getContext('2d');
+
         //win condition code
         if (!this.state.playerWord.includes("_")) {
-            this
-                .props
-                .upWins(this.props.user.username);
-            context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+            this.props.upWins(this.props.user.username);
+            this.setState({
+                playerWord: "_",
+                gameWord: "",
+                guess: "",
+                strikes: 0
+            });
             alert("YOU WIN");
-            this.setState({playerWord: "_", gameWord: "", guess: "", strikes: 0})
-
         }
+
         //loss condition code
         if (this.state.strikes === 6) {
-               context.beginPath();
-                context.moveTo(150, 125);
-                context.lineTo(165, 140);
-                context.stroke();
-            this
-                .props
-                .upLosses(this.props.user.username);
-           
+            //draw right leg
+            context.beginPath();
+            context.moveTo(150, 125);
+            context.lineTo(165, 140);
+            context.stroke();
+
+            this.props.upLosses(this.props.user.username);
+            this.setState({
+                playerWord: "_",
+                gameWord: "",
+                guess: "",
+                strikes: 0
+            });
             alert("YOU LOSE");
- 
-            this.setState({playerWord: "_", gameWord: "", guess: "", strikes: 0})
         }
     }
+
     startGame() {
-         let context = this
-            .refs
-            .canvas
-            .getContext('2d');
-         context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
-        this.setState({
-            ...this.state,
-            strikes: 0
-        });
-       
+        let context = this.refs.canvas.getContext('2d');
+        context.clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+
         //gallow tall piece
         context.beginPath();
         context.moveTo(100, 40);
@@ -102,42 +101,19 @@ class HangmanContainer extends React.Component {
         context.moveTo(150, 40);
         context.lineTo(150, 70);
         context.stroke();
+
+        //
         //hardcoded word list... switch to a dictionary api??
         //
         let gameWords = [
-                "flower",
-                "lamp",
-                "tiger",
-                "sheep",
-                "candle",
-                "puppy",
-                "cactus",
-                "painting",
-                "lightning",
-                "phone",
-                "hospital",
-                "coffee",
-                "tea",
-                "zoo",
-                "baseball",
-                "koala",
-                "dress",
-                "headphones",
-                "turtle",
-                "computer",
-                "typewriter",
-                "paris",
-                "checkers",
-                "chess",
-                "sunglasses",
-                "door",
-                "submarine",
-                "army",
-                "dragon",
-                "kayak"
+                "flower", "lamp", "tiger", "sheep", "candle", "puppy", "cactus", "painting", "lightning", "phone",
+                "hospital", "coffee", "tea", "zoo", "baseball", "koala", "dress", "headphones", "turtle", "computer",
+                "typewriter", "paris", "checkers", "chess", "sunglasses", "door", "submarine", "army", "dragon", "kayak"
             ],
+
             //pick gameWord
             gameWord = gameWords[(Math.floor(Math.random() * gameWords.length))],
+
             //create playerWord
             playerWord = "";
         for (let i = 0; i < gameWord.length; i++) {
@@ -148,16 +124,19 @@ class HangmanContainer extends React.Component {
             playerWord: playerWord,
             gameWord: gameWord
         });
+
         //
         //temporary production log
-        console.log(gameWord);
         //
+        console.log(gameWord);
     };
+
     handleGuess(word, letter) {
         let guess = letter.toLowerCase(),
             editWord = word;
+
         //handle right guess
-        if (word.includes(guess) && guess != "") {
+        if (word.includes(guess) && guess !== "") {
             let exists = true,
                 playerWordIs = [];
             //handle multiples of a letter
@@ -171,19 +150,18 @@ class HangmanContainer extends React.Component {
             let playerWord = this.state.playerWord,
                 newPlayerWord = "";
             for (let i = 0; i < playerWordIs.length; i++) {
-                i > 0
-                    ? newPlayerWord = newPlayerWord.substr(0, playerWordIs[i]) + guess + newPlayerWord.substr(playerWordIs[i] + 1)
-                    : newPlayerWord = playerWord.substr(0, playerWordIs[i]) + guess + playerWord.substr(playerWordIs[i] + 1);
+                i > 0 ? newPlayerWord = newPlayerWord.substr(0, playerWordIs[i]) + guess + newPlayerWord.substr(playerWordIs[i] + 1)
+                      : newPlayerWord = playerWord.substr(0, playerWordIs[i]) + guess + playerWord.substr(playerWordIs[i] + 1);
             }
             this.setState({
                 ...this.state,
                 playerWord: newPlayerWord,
                 guess: ""
             });
-            //handle wrong guess
-        } else if (!word.includes(guess) && guess != "") {
+
+        //handle wrong guess
+        } else if (!word.includes(guess) && guess !== "") {
             //add a strike
-            console.log(this.state.strikes);
             let strikes = this.state.strikes;
             strikes++;
             this.setState({
@@ -192,10 +170,7 @@ class HangmanContainer extends React.Component {
                 strikes: strikes
             });
             //draw a piece of the hangman
-            let context = this
-                .refs
-                .canvas
-                .getContext('2d');
+            let context = this.refs.canvas.getContext('2d');
             if (this.state.strikes === 0) {
                 //HEAD
                 context.beginPath();
@@ -225,21 +200,16 @@ class HangmanContainer extends React.Component {
                 context.moveTo(150, 125);
                 context.lineTo(135, 140);
                 context.stroke();
-            } else if (this.state.strikes === 5) {
-                //RIGHT LEG
-                context.beginPath();
-                context.moveTo(150, 125);
-                context.lineTo(165, 140);
-                context.stroke();
-
-            } else {
-                console.log("hello")
             }
         }
     }
+
     handleChange(key, event) {
-        this.setState({[key]: event.target.value})
+        this.setState({
+            [key]: event.target.value
+        })
     }
+
     render() {
         return (
             <Col md={12}>
@@ -252,13 +222,16 @@ class HangmanContainer extends React.Component {
                         state={this.state}
                         startGame={this.startGame}
                         handleGuess={this.handleGuess}
-                        handleChange={this.handleChange}/>
+                        handleChange={this.handleChange}
+                    />
                 </div>
             </Col>
         )
     }
 }
+
 const mapStateToProps = (state) => {
     return state;
 };
+
 export default connect(mapStateToProps, actionCreators)(HangmanContainer);

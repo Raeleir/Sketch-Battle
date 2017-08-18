@@ -1,5 +1,5 @@
 module.exports={
-    db:"hangman",
+    db: "hangman",
     port: 8080,
-    secret:"dogs and cats will be best friends"
+    secret: "dogs and cats will be best friends"
 };

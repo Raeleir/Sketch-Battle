@@ -1,13 +1,12 @@
 let express = require("express"),
     promptRouter = express.Router(),
     settings = require("../config/settings.js"),
-//import model
     Prompt = require("../models/prompt-model.js");
 
 //middleware to put all queries to lowercase
-promptRouter.use((req,res,next)=>{
-    for( let key in req.query){
-        if(typeof req.query[key]==="string"){
+promptRouter.use((req, res, next) => {
+    for(let key in req.query){
+        if(typeof req.query[key] === "string") {
             req.query[key]=req.query[key].toLowerCase()
         }
     }
@@ -15,32 +14,32 @@ promptRouter.use((req,res,next)=>{
 });
 
 // GET ALL
-promptRouter.get("/", (req,res)=>{
-       Prompt.find(req.query, (err, data) => {
- if(err) {
-      res.status(500).send({"message": "Error within server", err});
+promptRouter.get("/", (req, res) => {
+    Prompt.find(req.query, (err, data) => {
+    if(err) {
+        res.status(500).send({"message": "Error within server", err});
     } else {
-      res.status(200).send({"message": "Success here is your data", data});
+        res.status(200).send({"message": "Success here is your data", data});
     }
   });
 });
 //GET BY ID
-promptRouter.get("/:_id", (req,res)=>{
-    Prompt.findOne({"_id": req.params._id}, (err, data)=>{
-        if(err){
+promptRouter.get("/:_id", (req, res) => {
+    Prompt.findOne({"_id": req.params._id}, (err, data) => {
+        if(err) {
             res.status(500).send({"message": "Error within server", err});
-        } else{
+        } else {
             res.status(200).send({"message": "Success here is your data", data})
         }
     });
 });
 
-promptRouter.post("/", (req,res)=>{
+promptRouter.post("/", (req, res) => {
     let newPrompt = new Prompt(req.body);
-    newPrompt.save((err,data)=>{
-        if(err){
+    newPrompt.save((err, data) => {
+        if(err) {
             res.status(500).send({"message": "Error within the server", err});
-        } else{
+        } else {
             res.status(200).send({"message": "Success here is your data", data})
         }
     });
